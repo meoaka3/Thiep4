@@ -1204,5 +1204,90 @@ document.addEventListener("keydown", function (event) {
   })();
 </script>
 <!-- WEDDING_INFO_RUNTIME_END -->
+<style id="opening-palette-swap">
+  /* Hai dải viền vàng thuộc lớp nền #w-dp2ztpaj nên không chỉnh ở đây. */
+  #w-dp2ztpaj {
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  #w-dp2ztpaj .image-background {
+    background-image: url("assets/vendor/74b65c8d1789dd511dbb.png"), url("assets/vendor/bia-wedding.png") !important;
+    background-position: center, center !important;
+    background-repeat: no-repeat, no-repeat !important;
+    background-size: 100% 100%, cover !important;
+    -webkit-mask-image: radial-gradient(circle 174px at 50% 48.25%, transparent 0 99.3%, #000 100%) !important;
+    mask-image: radial-gradient(circle 174px at 50% 48.25%, transparent 0 99.3%, #000 100%) !important;
+  }
+
+  /* Phủ lại riêng ruy-băng và nơ, phía trước ảnh cưới. */
+  #w-dp2ztpaj .image-gradient-border {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background-image: url("assets/vendor/74b65c8d1789dd511dbb.png"), url("assets/vendor/bia-wedding.png");
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 100% 100%, cover;
+    clip-path: polygon(25% 57%, 75% 57%, 75% 59%, 100% 59%, 100% 65%, 75% 65%, 75% 81%, 25% 81%, 25% 65%, 0 65%, 0 59%, 25% 59%);
+  }
+
+  /* Đặt lời mời dưới phần bìa để không phủ lên ảnh nền. */
+  #w-l2y5ihxw,
+  #w-l2y5ihxw .section-wrapper,
+  #w-l2y5ihxw .section-container {
+    height: 910px !important;
+  }
+
+  #w-dtzvzhcm { top: 816px !important; z-index: 2; }
+  #w-vga9jtua { top: 840px !important; z-index: 2; }
+  #w-r1ii45ie { top: 890px !important; z-index: 2; }
+
+  /* Ảnh cưới ở lớp dưới, lộ ra qua lòng khung tròn đã được khoét. */
+  #w-gm23y5sz { top: 196px !important; z-index: 3; }
+  #w-ri5kb4n1 { top: 218px !important; z-index: 3; }
+  #w-m7ltj4vm { top: 238px !important; z-index: 3; }
+  #w-o30vuef3 {
+    top: 214px !important;
+    left: 38px !important;
+    width: 344px !important;
+    height: 344px !important;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #w-o30vuef3 .image-block-css {
+    border: 0 !important;
+    border-radius: 50% !important;
+    overflow: hidden !important;
+  }
+
+  #w-o30vuef3 .image-background {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    background-position: center 25% !important;
+    background-size: cover !important;
+  }
+
+  #w-gmum9ujw,
+  #w-09n4st8z,
+  #w-dtzvzhcm,
+  #w-vga9jtua,
+  #w-r1ii45ie,
+  #w-jihpgbs7 { z-index: 3; }
+  #w-aa8hqjhd { z-index: 4; }
+
+  #w-q29cakiv .image-background {
+    background-image: url("assets/images/opening-right-gold-red.png") !important;
+  }
+
+  #w-4efev246 .image-background {
+    background-image: url("assets/images/opening-left-gold-red.png") !important;
+  }
+</style>
 </body>
 </html>
