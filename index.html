@@ -1052,7 +1052,7 @@ document.addEventListener("keydown", function (event) {
 
       document.title = 'Lễ Thành Hôn ' + couple;
       setMeta('meta[property="og:title"]', document.title);
-      setHtml('09n4st8z', escapeHtml(weddingInfo.chu_re) + ' &amp; ' + escapeHtml(weddingInfo.co_dau));
+      setHtml('09n4st8z', escapeHtml(weddingInfo.chu_re) + ' - ' + escapeHtml(weddingInfo.co_dau));
       setHtml('1d1q28ai', escapeHtml(weddingInfo.chu_re) + '<br>&amp;<br>' + escapeHtml(weddingInfo.co_dau) + '<br>');
       setHtml('00lwa1ur', '<span style="text-decoration-line: underline;">NHÀ TRAI<br></span>Ông: ' + escapeHtml(weddingInfo.bo_chu_re) + '<br>Bà: ' + escapeHtml(weddingInfo.me_chu_re) + '<br>');
       setHtml('3z6ulhfd', '<span style="text-decoration-line: underline;">NHÀ GÁI<br></span>Ông: ' + escapeHtml(weddingInfo.bo_co_dau) + '<br>Bà: ' + escapeHtml(weddingInfo.me_co_dau) + '<br>');
@@ -1211,49 +1211,112 @@ document.addEventListener("keydown", function (event) {
     pointer-events: none;
   }
 
-  #w-dp2ztpaj .image-background {
-    background-image: url("assets/vendor/74b65c8d1789dd511dbb.png"), url("assets/vendor/bia-wedding.png") !important;
-    background-position: center, center !important;
-    background-repeat: no-repeat, no-repeat !important;
-    background-size: 100% 100%, cover !important;
-    -webkit-mask-image: radial-gradient(circle 174px at 50% 48.25%, transparent 0 99.3%, #000 100%) !important;
-    mask-image: radial-gradient(circle 174px at 50% 48.25%, transparent 0 99.3%, #000 100%) !important;
+  /* Viền dọc vàng luôn chạy hết bìa, độc lập với lớp nền hoa bị cắt ở dưới. */
+  #w-dp2ztpaj .image-block-css::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: center / 100% 100% no-repeat url("assets/vendor/74b65c8d1789dd511dbb.png");
   }
 
-  /* Phủ lại riêng ruy-băng và nơ, phía trước ảnh cưới. */
+  /* Chữ Song Hỷ đặt chính diện trên cùng của bìa. */
+  #w-dp2ztpaj .image-block-css::after {
+    content: "";
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    width: 62px;
+    height: 62px;
+    z-index: 4;
+    pointer-events: none;
+    transform: translateX(-50%);
+    background: center / contain no-repeat url("assets/vendor/222a94a9f9c80a5cb759.webp");
+  }
+
+  /* Dòng tiêu đề nằm giữa Song Hỷ và cụm khung tròn. */
+  #w-dp2ztpaj::after {
+    content: "Thiệp mời";
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    z-index: 5;
+    margin: 0;
+    color: #b20f1a;
+    font-family: "GreatVibes-Regular.ttf", "Ephesis-Regular.ttf", cursive;
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.95;
+    pointer-events: none;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  #w-dp2ztpaj .image-background {
+    /* Khung hoa phủ trên ảnh; cửa sổ tròn dùng cùng kích thước với ảnh cưới. */
+    background-image: url("assets/vendor/bia-wedding-overlay.png") !important;
+    background-position: center 55px !important;
+    background-repeat: no-repeat !important;
+    /* Giữ nguyên tỷ lệ khung để vòng vàng không bị cắt hoặc méo. */
+    /* Nới lớp hoa ở bốn góc ra sát mép, vẫn giữ đúng tỉ lệ để vòng vàng tròn. */
+    background-size: 115% auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0 !important;
+    left: 0 !important;
+    -webkit-mask-image: radial-gradient(circle 170px at 50% 52.81%, transparent 0 100%, #000 100%) !important;
+    mask-image: radial-gradient(circle 170px at 50% 52.81%, transparent 0 100%, #000 100%) !important;
+    /* Lớp trung tâm bắt đầu dưới phần tiêu đề để không lặp hoa ở đỉnh. */
+    clip-path: inset(160px 0 20% 0) !important;
+  }
+
+  /* Lớp trang trí riêng không bị khoét: hoa, vòng vàng và nơ luôn ở trước ảnh. */
   #w-dp2ztpaj .image-gradient-border {
-    display: block;
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2 !important;
+    pointer-events: none;
+    background-image: url("assets/vendor/bia-wedding-overlay.png") !important;
+    background-position: center 55px !important;
+    background-repeat: no-repeat !important;
+    background-size: 115% auto !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    clip-path: inset(160px 0 20% 0) !important;
+  }
+
+  /* Chỉ lấy hai góc hoa đầu trang từ lớp riêng, vì khung tròn đã được hạ xuống. */
+  #w-dp2ztpaj .image-gradient-border::before {
+    content: "";
     position: absolute;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    background-image: url("assets/vendor/74b65c8d1789dd511dbb.png"), url("assets/vendor/bia-wedding.png");
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
-    background-size: 100% 100%, cover;
-    clip-path: polygon(25% 57%, 75% 57%, 75% 59%, 100% 59%, 100% 65%, 75% 65%, 75% 81%, 25% 81%, 25% 65%, 0 65%, 0 59%, 25% 59%);
+    background: center -10px / 115% auto no-repeat url("assets/vendor/bia-wedding-overlay.png");
+    clip-path: inset(0 0 88% 0);
   }
 
-  /* Đặt lời mời dưới phần bìa để không phủ lên ảnh nền. */
+  /* Bìa đầu kết thúc gọn dưới khung nền. */
   #w-l2y5ihxw,
   #w-l2y5ihxw .section-wrapper,
   #w-l2y5ihxw .section-container {
-    height: 910px !important;
+    height: 800px !important;
   }
-
-  #w-dtzvzhcm { top: 816px !important; z-index: 2; }
-  #w-vga9jtua { top: 840px !important; z-index: 2; }
-  #w-r1ii45ie { top: 890px !important; z-index: 2; }
 
   /* Ảnh cưới ở lớp dưới, lộ ra qua lòng khung tròn đã được khoét. */
   #w-gm23y5sz { top: 196px !important; z-index: 3; }
   #w-ri5kb4n1 { top: 218px !important; z-index: 3; }
   #w-m7ltj4vm { top: 238px !important; z-index: 3; }
   #w-o30vuef3 {
-    top: 214px !important;
-    left: 38px !important;
-    width: 344px !important;
-    height: 344px !important;
+    top: 253px !important;
+    left: 40px !important;
+    width: 340px !important;
+    height: 340px !important;
     z-index: 1;
     pointer-events: none;
   }
@@ -1273,6 +1336,103 @@ document.addEventListener("keydown", function (event) {
     background-size: cover !important;
   }
 
+  /* Màu chữ chung của thiệp: thay toàn bộ chữ đen kế thừa thành đỏ cưới. */
+  body {
+    color: #b20f1a;
+  }
+
+  /* Các khối có màu đen khai báo riêng ở những trang thông tin. */
+  #w-u8ko2spd .text-block-css,
+  #w-6ivzqt4u .text-block-css,
+  #w-n4kdatky .text-block-css,
+  #w-bride-address-card h3,
+  #w-bride-address-card p {
+    color: #b20f1a !important;
+  }
+
+  /* Dòng chúc cuối trang là ngoại lệ duy nhất: giữ nguyên màu trắng. */
+  #w-vsspxwgw .text-block-css,
+  #w-bmc9irmr .text-block-css {
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  /* Tên cô dâu – chú rể và thời gian đặt ngay dưới nơ ở bìa đầu. */
+  #w-09n4st8z,
+  #w-gm23y5sz,
+  #w-ri5kb4n1,
+  #w-m7ltj4vm {
+    display: block !important;
+    z-index: 5 !important;
+  }
+
+  #w-09n4st8z {
+    top: 646px !important;
+    left: 20px !important;
+    width: 380px !important;
+    height: 50px !important;
+  }
+
+  #w-09n4st8z .text-block-css {
+    color: #b20f1a !important;
+    font-family: "GreatVibes-Regular.ttf", "Ephesis-Regular.ttf", cursive !important;
+    font-size: 40px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    -webkit-text-stroke: 0 transparent !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+
+  #w-gm23y5sz {
+    top: 702px !important;
+    left: 80px !important;
+    width: 260px !important;
+    height: 25px !important;
+  }
+
+  #w-gm23y5sz .text-block-css {
+    color: #b20f1a !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+
+  #w-ri5kb4n1 {
+    top: 730px !important;
+    left: 75px !important;
+    width: 270px !important;
+  }
+
+  #w-ri5kb4n1 .line-container {
+    border-color: #b20f1a !important;
+  }
+
+  #w-m7ltj4vm {
+    top: 751px !important;
+    left: 55px !important;
+    width: 310px !important;
+    height: 36px !important;
+  }
+
+  #w-m7ltj4vm .text-block-css {
+    color: #b20f1a !important;
+    font-family: Arial, sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    letter-spacing: 7px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+
   #w-gmum9ujw,
   #w-09n4st8z,
   #w-dtzvzhcm,
@@ -1280,6 +1440,16 @@ document.addEventListener("keydown", function (event) {
   #w-r1ii45ie,
   #w-jihpgbs7 { z-index: 3; }
   #w-aa8hqjhd { z-index: 4; }
+
+  /* Bìa đầu chỉ giữ ảnh cưới, khung hoa – vàng và nơ. */
+  #w-gmum9ujw,
+  #w-rsb2oeuu,
+  #w-dtzvzhcm,
+  #w-vga9jtua,
+  #w-r1ii45ie,
+  #w-jihpgbs7 {
+    display: none !important;
+  }
 
   #w-q29cakiv .image-background {
     background-image: url("assets/images/opening-right-gold-red.png") !important;
