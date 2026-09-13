@@ -144,12 +144,12 @@ Yêu người vừa ý, cưới người mình thương...">
         background: center / contain no-repeat url("assets/wedding-calendar.svg") !important;
       }
 
-      /* Two local venue cards: groom's home and bride's home. */
+      /* Two local venue cards and parallel gift boxes. */
       #w-0dseanb4 {
         height: 510px !important;
       }
 
-      /* The original border layer was only 216px tall. Extend it with the venue section. */
+      /* Extend the original border layer with the complete venue section. */
       #w-1bh5e7j0 {
         height: 510px !important;
       }
@@ -202,33 +202,73 @@ Yêu người vừa ý, cưới người mình thương...">
         font-size: 15px;
       }
 
+      /* Nhà trai: đỏ rượu vang dịu hơn đỏ tươi mặc định. */
+      #w-200ubu1h .button-css {
+        background: #7d0d15 !important;
+      }
+
       #w-wedding-gift-actions {
         position: absolute;
         top: 400px;
-        left: 55px;
+        left: 49px;
         display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 10px;
-        width: 310px;
+        width: 322px;
+        height: 96px;
       }
 
       #w-wedding-gift-actions button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
         width: 100%;
-        height: 42px;
-        border-radius: 24px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, .24);
-        color: #fff;
+        min-height: 0;
+        padding: 7px 12px 8px;
+        border: 2px solid #e6bd5d;
+        border-radius: 18px;
+        box-shadow: 0 6px 12px rgba(87, 8, 14, .28);
         cursor: pointer;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+
+      #w-wedding-gift-actions button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 9px 16px rgba(87, 8, 14, .34);
+      }
+
+      #w-wedding-gift-actions button:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: 2px;
+      }
+
+      #w-wedding-gift-actions .gift-icon {
+        display: block;
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+        pointer-events: none;
+      }
+
+      #w-wedding-gift-actions span {
+        display: block;
         font-family: 'Pattaya', sans-serif;
-        font-size: 16px;
-        line-height: 1;
+        font-size: 14px;
+        line-height: 1.1;
+        pointer-events: none;
       }
 
       #w-wedding-gift-actions .gift-groom {
-        background: #ff2632;
+        background: linear-gradient(135deg, #7d0d15, #a91420 55%, #760910);
+        color: #fff1c5;
       }
 
       #w-wedding-gift-actions .gift-bride {
-        background: #c89b31;
+        border-color: #98121b;
+        background: linear-gradient(135deg, #f1cf72, #c99328 55%, #e9ba4e);
+        color: #7d0d15;
       }
 
       #w-wedding-gift-modal {
@@ -755,8 +795,8 @@ btn.addEventListener('click', async () => {
       const giftActions = document.createElement('div');
       giftActions.id = 'w-wedding-gift-actions';
       giftActions.innerHTML = [
-        '<button type="button" class="gift-groom" data-gift="groom">Gửi Mừng Cưới cho Chú Rể</button>',
-        '<button type="button" class="gift-bride" data-gift="bride">Gửi Mừng Cưới cho Cô Dâu</button>'
+        '<button type="button" class="gift-groom" data-gift="groom" aria-label="Mừng cưới cho chú rể"><img class="gift-icon" src="assets/images/wedding-gift-icon-red-gold.png" alt="" aria-hidden="true"><span>Mừng cưới cho chú rể</span></button>',
+        '<button type="button" class="gift-bride" data-gift="bride" aria-label="Mừng cưới cho cô dâu"><img class="gift-icon" src="assets/images/wedding-gift-icon-red-gold.png" alt="" aria-hidden="true"><span>Mừng cưới cho cô dâu</span></button>'
       ].join('');
       venueContainer.append(giftActions);
 
@@ -1100,7 +1140,7 @@ document.addEventListener("keydown", function (event) {
 
       const giftActions = document.createElement('div');
       giftActions.id = 'w-wedding-gift-actions';
-      giftActions.innerHTML = '<button type="button" class="gift-groom" data-gift="groom">Gửi Mừng Cưới cho Chú Rể</button><button type="button" class="gift-bride" data-gift="bride">Gửi Mừng Cưới cho Cô Dâu</button>';
+      giftActions.innerHTML = '<button type="button" class="gift-groom" data-gift="groom" aria-label="Mừng cưới cho chú rể"><img class="gift-icon" src="assets/images/wedding-gift-icon-red-gold.png" alt="" aria-hidden="true"><span>Mừng cưới cho chú rể</span></button><button type="button" class="gift-bride" data-gift="bride" aria-label="Mừng cưới cho cô dâu"><img class="gift-icon" src="assets/images/wedding-gift-icon-red-gold.png" alt="" aria-hidden="true"><span>Mừng cưới cho cô dâu</span></button>';
       venueContainer.append(giftActions);
 
       const giftModal = document.createElement('div');
@@ -1465,6 +1505,13 @@ document.addEventListener("keydown", function (event) {
   #w-r1ii45ie,
   #w-jihpgbs7 {
     display: none !important;
+  }
+
+  /* Hai cánh cửa là lớp phủ đầu trang; chữ chỉ lộ ra khi cánh cửa trượt đi. */
+  #w-aa8hqjhd,
+  #w-q29cakiv,
+  #w-4efev246 {
+    z-index: 10 !important;
   }
 
   #w-q29cakiv .image-background {
